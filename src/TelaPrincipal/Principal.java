@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import Classes.ConectarAoBancoDeDados;
-import TelasJFrame.Pesquisa;
+import TelasJFrame.Pesquisar;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -51,8 +51,10 @@ public class Principal {
 	private void initialize() {
 		frmAgendaDeContatos = new JFrame();
 		frmAgendaDeContatos.setTitle("Agenda de Contatos");
-		frmAgendaDeContatos.setBounds(100, 100, 680, 453);
-		frmAgendaDeContatos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//Maximiza a tela
+		frmAgendaDeContatos.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
 		frmAgendaDeContatos.getContentPane().setLayout(null);
 		
 		JButton btnTestarConexãoBD = new JButton("Testar Conexão com BD");
@@ -81,10 +83,10 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 				
 				//Instanciando para ter acesso a tela
-				Pesquisa telaPesquisa = new Pesquisa();		
+				Pesquisar telaPesquisar = new Pesquisar();		
 				
 				//Deixando a tela de pesquisa visível
-				telaPesquisa.setVisible(true);
+				telaPesquisar.setVisible(true);
 			}
 		});
 		menuArquivo.add(subMenuContatos);

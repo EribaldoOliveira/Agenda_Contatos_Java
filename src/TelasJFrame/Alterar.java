@@ -1,6 +1,8 @@
 package TelasJFrame;
 
 import java.awt.EventQueue;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -31,12 +33,23 @@ public class Alterar extends JFrame {
 	 */
 	public Alterar() {
 		setTitle("Alterar Dados");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		contentPane = new JPanel();
+		
+		//Point representa o local no espaço de coordenadas x e y
+		Point centro = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+		
+		int largura = 800;
+		int altura = 500;
+		
+		//centraliza no meio da tela
+		setBounds(centro.x - largura / 2, centro.y - altura / 2, 800, 500 );
+		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
 	}
 
 }
