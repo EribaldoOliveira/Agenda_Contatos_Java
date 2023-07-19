@@ -2,7 +2,10 @@ package Classes;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -48,6 +51,52 @@ public class OperacoesNoBancoDeDados {
 			JOptionPane.showMessageDialog(null, "Erro ao salvar os dados!");
 
 		}
+		
+	}
+	//método para carregar todos os registros da agenda
+	public List<DadosAgenda>listarItens(){
+		
+	
+		
+		
+		try {
+			
+			List<DadosAgenda> Lista = new ArrayList<>();
+			
+			//Select - selecione
+			//from -=  De / Da
+			String sqlBancoDados = "Select * from tabela_cadastro";
+			
+			//Preparando/Tratando a execução dos comando SQL
+			PreparedStatement lerInformacao = conexao.prepareStatement(sqlBancoDados);
+			
+			//A variável resultado vai receber o resultado da execução da Query 
+			ResultSet resultado = lerInformacao.executeQuery();
+			
+			//While - Enquanto
+			while(resultado.next()) {
+				
+				DadosAgenda linha = new DadosAgenda();
+				linha.setId(resultado.getInt("id"));
+				linha.setNome(resultado.getString("nome"));
+				linha.setTelefone(resultado.getString("Telefone"));
+				linha.setEmail(resultado.getString("Email"));
+				linha.setEndereco(resultado.getString("Endereco"));
+				linha.setFilhos(resultado.getString("Filhos"));
+
+				Lista.add(linha);
+				
+			}
+			
+			return Lista;
+				
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "Erro ao Carregar os Dados: " + e);
+		}
+		
+		return null;
 		
 	}
 
